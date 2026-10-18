@@ -91,6 +91,7 @@ RETURN [n IN nodes(p) | n.idx] AS steps, [r IN relationships(p) | r.via] AS via
 
 GRAPH_STEPS = """
 MATCH (s:Step)
+WITH s.idx AS i, head(collect(s)) AS s
 RETURN s.idx AS idx, s.agent AS agent, s.kind AS kind, s.candidate AS candidate,
        s.preview AS preview, s.chars AS chars, s.is_final AS is_final
 ORDER BY idx

@@ -152,6 +152,27 @@ uv run python -m butterfly.evaluate --method butterfly   # graph + one LLM call
 uv run pytest -q
 ```
 
+## Use it from an AI agent (MCP)
+
+Butterfly also runs as an MCP server, so a coding agent can ask "which step broke this run?" and explore the run's graph itself. With FalkorDB running (`docker compose up falkordb`) and the data fetched (`uv run python scripts/fetch_data.py && uv run python scripts/import_runs.py`), add it to Claude Code:
+
+```bash
+claude mcp add butterfly -- uv run --directory /path/to/butterfly python -m butterfly.mcp_server
+```
+
+or to any MCP client config:
+
+```json
+{"mcpServers": {"butterfly": {"command": "uv", "args": ["run", "--directory", "/path/to/butterfly", "python", "-m", "butterfly.mcp_server"]}}}
+```
+
+Tools:
+
+- `list_failed_runs(system?, limit?)`: the 184 failed Who&When runs.
+- `diagnose_run(run_id, use_llm?)`: the decisive agent and step, the reason, the dependency chain from the failure back to it (when the graph has one), the top suspects, and the benchmark's label for comparison.
+- `get_step(run_id, idx)`: one step's cleaned message.
+- `query_run_graph(run_id, cypher)`: any read-only Cypher on that run's graph (`GRAPH.RO_QUERY`, 3 s timeout, 200 rows). Writes are rejected by FalkorDB.
+
 ## How the evaluation is kept fair
 
 - **Same model** for the baseline and Butterfly, and **no ground truth** in any prompt.
@@ -164,6 +185,7 @@ uv run pytest -q
 
 - Entity linking is regex-based. It misses paraphrases and links some unrelated numbers.
 - Who&When labels one decisive step per run. Some failures have more than one reasonable answer.
+- Seen locally on FalkorDB v4.22.1: after a server restart, an index lookup for `idx: 0` returned no rows, so a re-import could add a duplicate step-0 node. The API reads one row per step index, so the app is unaffected; a fresh `docker compose up` imports cleanly.
 - Recent research systems report higher accuracy on Who&When (graph-based methods such as AIG and DeFA), using larger models and many LLM calls per run. Butterfly's point is the trade-off: most of the work is done by the graph, which is cheap, fast and explainable.
 
 ## Built with
