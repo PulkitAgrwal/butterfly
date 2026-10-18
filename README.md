@@ -2,7 +2,7 @@
 
 **Find the flap that caused the storm.** When a team of AI agents fails a task, Butterfly finds which agent made the decisive mistake, at which step, and, when the graph links the two, shows the chain of steps that carried that mistake to the failure as a FalkorDB path you can re-run.
 
-**Try it:** [pulkitagrwal.github.io/butterfly](https://pulkitagrwal.github.io/butterfly/), a recorded copy of the app with every answer captured from FalkorDB; `docker compose up` runs it live (see *Quickstart*).
+**Try it:** [butterfly-falkordb.netlify.app](https://butterfly-falkordb.netlify.app), a recorded copy of the app with every answer captured from FalkorDB; `docker compose up` runs it live (see *Quickstart*).
 
 Built for [Graph Hacks: Context for AI Agents](https://www.wemakedevs.org/hackathons/falkordb) (WeMakeDevs x FalkorDB). **Track: Agents That Act on Connected Data.**
 

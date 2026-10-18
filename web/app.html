@@ -66,6 +66,7 @@ button, select { font: inherit; color: inherit; }
 /* page */
 .page { max-width: 1280px; margin: 0 auto; padding: 22px 24px 48px; }
 .run-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.pill.code { font-family: var(--mono); font-size: 11.5px; }
 .pill { font-size: 12.5px; padding: 3px 10px; border-radius: 999px; background: var(--bg); color: var(--ink-2); box-shadow: 0 0 0 1px var(--line); }
 .status { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 3px 11px; border-radius: 999px; background: var(--storm-soft); color: #b42328; transition: background .3s, color .3s; }
 .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
@@ -149,6 +150,7 @@ button, select { font: inherit; color: inherit; }
 .checklist li.done { color: var(--ink); }
 .checklist li.done .dot { background: var(--ink); border-color: var(--ink); color: #fff; animation: none; }
 .checklist li.done .dot svg { opacity: 1; }
+.checklist code.fn { font: 11px var(--mono); margin-left: 8px; padding: 1px 7px; border-radius: 6px; background: var(--soft); color: var(--monarch-ink); }
 .checklist .val { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
 .verdict { padding: 6px 24px 22px; }
 .verdict .eyebrow { font-size: 12.5px; color: var(--ink-3); margin: 10px 0 4px; }
@@ -409,6 +411,7 @@ function renderHead() {
   $("run-head").replaceChildren(
     el("span", { class: `status${state.diag ? " found" : ""}` }, state.diag ? `Mistake found: step ${state.diag.step}` : "Run failed"),
     el("span", { class: "pill" }, `${r.system} team`),
+    el("span", { class: "pill code" }, `FalkorDB graph butterfly:${r.run_id}`),
     el("span", { class: "pill" }, `${last + 1} steps`),
     el("span", { class: "pill" }, `${r.team.length} ${r.team.length === 1 ? "agent" : "agents"}`),
   );
@@ -522,12 +525,12 @@ async function findMistake() {
   const r = state.run, cand = r.steps.filter((s) => s.candidate).length;
   const items = [
     ["graph", `Built this run's graph`, `${r.steps.length} steps, ${r.edges.length} links`],
-    ["rank", "FalkorDB ranked the suspects", `${cand} steps`],
+    ["rank", "FalkorDB ranked the suspects", `${cand} steps`, "algo.BFS"],
     ...(useLLM ? [["llm", "An LLM checked the top suspects", ""]] : []),
-    ["proof", "Checking for a chain to the failure", ""],
+    ["proof", "Checking for a chain to the failure", "", "shortestPath"],
   ];
   const panel = $("panel");
-  const list = el("ol", { class: "checklist" }, items.map(([k, t, v]) => el("li", { "data-k": k }, el("span", { class: "dot", html: ICON("i-check") }), el("span", {}, t), el("span", { class: "val" }, v))));
+  const list = el("ol", { class: "checklist" }, items.map(([k, t, v, fn]) => el("li", { "data-k": k }, el("span", { class: "dot", html: ICON("i-check") }), el("span", {}, el("span", {}, t), fn ? el("code", { class: "fn" }, fn) : null), el("span", { class: "val" }, v))));
   panel.replaceChildren(list);
   const fetching = api(`/api/runs/${r.run_id}/diagnose?llm=${useLLM}`);
   const lis = [...list.children];
@@ -537,7 +540,7 @@ async function findMistake() {
     if (lis[i].dataset.k === "proof") {
       try { d = await fetching; } catch (err) { panel.append(el("p", { class: "verdict", style: "color:#b42328" }, `Could not finish: ${err.message}`)); $("find").disabled = false; return; }
       const chained = d.blame_path.length > 1;
-      lis[i].children[1].textContent = chained ? "Proved it with a shortest path" : "Looked for a chain to the failure";
+      lis[i].children[1].firstChild.textContent = chained ? "Proved it with a shortest path" : "Looked for a chain to the failure";
       lis[i].querySelector(".val").textContent = chained ? `${d.blame_path.join(" ← ")}, ${d.proof_ms} ms` : "none found";
       const llmLi = lis.find((x) => x.dataset.k === "llm");
       if (llmLi) llmLi.querySelector(".val").textContent = `${fmtTokens(d.prompt_tokens)} tokens`;

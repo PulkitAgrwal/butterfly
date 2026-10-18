@@ -281,7 +281,7 @@ footer { padding: 36px 0 48px; color: var(--ink-3); font-size: 13.5px; display: 
 <main>
   <section class="hero wrap">
     <h1>Find the flap <span class="glyph fly"><svg><use href="#mark"/></svg></span> that caused the storm <span class="glyph storm"><svg><use href="#bolt"/></svg></span></h1>
-    <p class="sub">When a team of AI agents fails a task, Butterfly finds the agent that made the decisive mistake, the step where it happened, and the chain of steps that carried it to the failure.</p>
+    <p class="sub">When a team of AI agents fails a task, Butterfly finds the agent that made the decisive mistake, the step where it happened, and, when the graph links them, the chain of steps that carried it to the failure.</p>
     <div class="cta">
       <a class="btn dark" href="/app" target="_blank" rel="noopener">Try Butterfly</a>
       <a class="btn light" href="#results">See the results <svg><use href="#arrow"/></svg></a>
@@ -660,7 +660,13 @@ async function loadCases() {
 
 $("replay").addEventListener("click", playStage);
 drawIllustrations();
-playStage();
+// start the story when its card is on screen, so nobody scrolls down to a finished animation
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) { io.disconnect(); playStage(); }
+  }, { threshold: 0.35 });
+  io.observe($("story"));
+} else playStage();
 loadCases();
 </script>
 </body>
