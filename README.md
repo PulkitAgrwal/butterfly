@@ -6,6 +6,8 @@
 
 **Try it:** [butterfly-falkordb.netlify.app](https://butterfly-falkordb.netlify.app), a recorded copy of the app with every answer captured from FalkorDB; `docker compose up` runs it live (see *Quickstart*).
 
+**For agents:** Butterfly is also an [MCP server](#use-it-from-an-ai-agent-mcp), so a coding agent can call `diagnose_run` on a failed run and explore its graph with read-only Cypher (`query_run_graph`).
+
 Built for [Graph Hacks: Context for AI Agents](https://www.wemakedevs.org/hackathons/falkordb) (WeMakeDevs x FalkorDB). **Track: Agents That Act on Connected Data.**
 
 **In one line:** on 184 real, human-labelled multi-agent failures from a public benchmark (Who&When, ICML 2025, not faults we planted), Butterfly finds the decisive step as often as the strongest whole-log method, names the responsible agent more often (62.5% vs 53.8%), sends the LLM half the tokens, and for 66 of the 184 answers shows the dependency chain from the failure back to the mistake as a graph path. With no LLM at all, the graph alone finds the step 28% of the time.
