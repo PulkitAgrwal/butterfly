@@ -1,0 +1,35 @@
+services:
+  falkordb:
+    # Pinned: `latest` currently resolves to this same build; 6.0.x has open crash bugs.
+    image: falkordb/falkordb:v4.22.1
+    ports:
+      - "6380:6379"   # Redis protocol on host 6380 (avoids clashing with a local Redis on 6379)
+      - "3000:3000"   # FalkorDB Browser, handy for exploring the run graphs
+    environment:
+      # Server-side cap so no query (ours or an LLM's) can run longer than 5s.
+      FALKORDB_ARGS: "TIMEOUT_MAX 5000 TIMEOUT_DEFAULT 3000"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      secrets: [extra_ca]
+    ports:
+      - "8000:8000"   # Butterfly UI and API
+    env_file:
+      - path: .env    # optional: OPENAI_API_KEY, ELEVENLABS_API_KEY / CARTESIA_API_KEY
+        required: false
+    depends_on:
+      falkordb:
+        condition: service_healthy
+    restart: unless-stopped
+
+secrets:
+  extra_ca:
+    # Only needed behind a TLS-inspecting proxy: EXTRA_CA_FILE=/path/to/ca-bundle.pem docker compose build
+    file: ${EXTRA_CA_FILE:-/dev/null}

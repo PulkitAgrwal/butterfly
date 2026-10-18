@@ -1,0 +1,1 @@
+{"text": "{\"agent\":\"Library_Database_Expert\",\"step\":0,\"reason\":\"The run derailed immediately because step 0 accepted an unverified manual-search fallback instead of actually extracting BASE results for DDC 633 in 2020, so all later steps only propagated that failure.\"}", "prompt_tokens": 2294, "completion_tokens": 60, "model": "gpt-5.4-mini"}

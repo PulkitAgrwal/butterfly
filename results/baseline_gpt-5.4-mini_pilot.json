@@ -1,0 +1,131 @@
+{
+  "method": "baseline (gpt-5.4-mini)",
+  "model": "gpt-5.4-mini",
+  "report": {
+    "algorithm_generated": {
+      "n": 3,
+      "agent_acc": 1.0,
+      "step_acc": 0.3333333333333333,
+      "step_acc_ci95": [
+        0.0,
+        1.0
+      ],
+      "step_top3": 0.3333333333333333,
+      "step_within1": 0.6666666666666666,
+      "prompt_tokens_mean": 2018.0,
+      "completion_tokens_mean": 100.0
+    },
+    "hand_crafted": {
+      "n": 3,
+      "agent_acc": 0.3333333333333333,
+      "step_acc": 0.0,
+      "step_acc_ci95": [
+        0.0,
+        0.0
+      ],
+      "step_top3": 0.0,
+      "step_within1": 0.0,
+      "prompt_tokens_mean": 20208.666666666668,
+      "completion_tokens_mean": 104.33333333333333
+    },
+    "all": {
+      "n": 6,
+      "agent_acc": 0.6666666666666666,
+      "step_acc": 0.16666666666666666,
+      "step_acc_ci95": [
+        0.0,
+        0.5
+      ],
+      "step_top3": 0.16666666666666666,
+      "step_within1": 0.3333333333333333,
+      "prompt_tokens_mean": 11113.333333333334,
+      "completion_tokens_mean": 102.16666666666667
+    }
+  },
+  "rows": [
+    {
+      "split": "algorithm_generated",
+      "run_id": "ag-1",
+      "gold_agent": "Excel_Expert",
+      "gold_step": 0,
+      "pred_agent": "Excel_Expert",
+      "pred_step": 1,
+      "agent_hit": true,
+      "step_hit": false,
+      "top3_hit": false,
+      "within1_hit": true,
+      "prompt_tokens": 1531,
+      "completion_tokens": 127
+    },
+    {
+      "split": "algorithm_generated",
+      "run_id": "ag-2",
+      "gold_agent": "Verification_Expert",
+      "gold_step": 2,
+      "pred_agent": "Verification_Expert",
+      "pred_step": 2,
+      "agent_hit": true,
+      "step_hit": true,
+      "top3_hit": true,
+      "within1_hit": true,
+      "prompt_tokens": 1635,
+      "completion_tokens": 97
+    },
+    {
+      "split": "algorithm_generated",
+      "run_id": "ag-3",
+      "gold_agent": "Verification_Expert",
+      "gold_step": 4,
+      "pred_agent": "Verification_Expert",
+      "pred_step": 2,
+      "agent_hit": true,
+      "step_hit": false,
+      "top3_hit": false,
+      "within1_hit": false,
+      "prompt_tokens": 2888,
+      "completion_tokens": 76
+    },
+    {
+      "split": "hand_crafted",
+      "run_id": "hc-1",
+      "gold_agent": "WebSurfer",
+      "gold_step": 12,
+      "pred_agent": "WebSurfer",
+      "pred_step": 4,
+      "agent_hit": true,
+      "step_hit": false,
+      "top3_hit": false,
+      "within1_hit": false,
+      "prompt_tokens": 8084,
+      "completion_tokens": 99
+    },
+    {
+      "split": "hand_crafted",
+      "run_id": "hc-2",
+      "gold_agent": "WebSurfer",
+      "gold_step": 4,
+      "pred_agent": "Orchestrator",
+      "pred_step": 1,
+      "agent_hit": false,
+      "step_hit": false,
+      "top3_hit": false,
+      "within1_hit": false,
+      "prompt_tokens": 23777,
+      "completion_tokens": 111
+    },
+    {
+      "split": "hand_crafted",
+      "run_id": "hc-3",
+      "gold_agent": "WebSurfer",
+      "gold_step": 32,
+      "pred_agent": "Orchestrator",
+      "pred_step": 1,
+      "agent_hit": false,
+      "step_hit": false,
+      "top3_hit": false,
+      "within1_hit": false,
+      "prompt_tokens": 28765,
+      "completion_tokens": 103
+    }
+  ]
+}

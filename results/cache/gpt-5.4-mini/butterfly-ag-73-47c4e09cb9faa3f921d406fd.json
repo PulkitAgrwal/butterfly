@@ -1,0 +1,1 @@
+{"text": "{\"agent\":\"VideoAnalysis_Expert\",\"step\":1,\"reason\":\"This step introduced the unsupported claim that the official script begins with 'INT. CASTLE BEDROOM'; the correct first scene heading is different, and the later validation steps only repeated this initial error.\"}", "prompt_tokens": 1299, "completion_tokens": 57, "model": "gpt-5.4-mini"}

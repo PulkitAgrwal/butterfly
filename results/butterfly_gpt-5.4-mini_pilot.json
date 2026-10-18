@@ -1,0 +1,131 @@
+{
+  "method": "butterfly (gpt-5.4-mini)",
+  "model": "gpt-5.4-mini",
+  "report": {
+    "algorithm_generated": {
+      "n": 3,
+      "agent_acc": 0.6666666666666666,
+      "step_acc": 0.6666666666666666,
+      "step_acc_ci95": [
+        0.0,
+        1.0
+      ],
+      "step_top3": 1.0,
+      "step_within1": 0.6666666666666666,
+      "prompt_tokens_mean": 1793.3333333333333,
+      "completion_tokens_mean": 65.0
+    },
+    "hand_crafted": {
+      "n": 3,
+      "agent_acc": 1.0,
+      "step_acc": 0.6666666666666666,
+      "step_acc_ci95": [
+        0.0,
+        1.0
+      ],
+      "step_top3": 0.3333333333333333,
+      "step_within1": 0.6666666666666666,
+      "prompt_tokens_mean": 9295.666666666666,
+      "completion_tokens_mean": 64.66666666666667
+    },
+    "all": {
+      "n": 6,
+      "agent_acc": 0.8333333333333334,
+      "step_acc": 0.6666666666666666,
+      "step_acc_ci95": [
+        0.3333333333333333,
+        1.0
+      ],
+      "step_top3": 0.6666666666666666,
+      "step_within1": 0.6666666666666666,
+      "prompt_tokens_mean": 5544.5,
+      "completion_tokens_mean": 64.83333333333333
+    }
+  },
+  "rows": [
+    {
+      "split": "algorithm_generated",
+      "run_id": "ag-1",
+      "gold_agent": "Excel_Expert",
+      "gold_step": 0,
+      "pred_agent": "Excel_Expert",
+      "pred_step": 0,
+      "agent_hit": true,
+      "step_hit": true,
+      "top3_hit": true,
+      "within1_hit": true,
+      "prompt_tokens": 1393,
+      "completion_tokens": 81
+    },
+    {
+      "split": "algorithm_generated",
+      "run_id": "ag-2",
+      "gold_agent": "Verification_Expert",
+      "gold_step": 2,
+      "pred_agent": "Verification_Expert",
+      "pred_step": 2,
+      "agent_hit": true,
+      "step_hit": true,
+      "top3_hit": true,
+      "within1_hit": true,
+      "prompt_tokens": 1587,
+      "completion_tokens": 51
+    },
+    {
+      "split": "algorithm_generated",
+      "run_id": "ag-3",
+      "gold_agent": "Verification_Expert",
+      "gold_step": 4,
+      "pred_agent": "Statistics_Expert",
+      "pred_step": 2,
+      "agent_hit": false,
+      "step_hit": false,
+      "top3_hit": true,
+      "within1_hit": false,
+      "prompt_tokens": 2400,
+      "completion_tokens": 63
+    },
+    {
+      "split": "hand_crafted",
+      "run_id": "hc-1",
+      "gold_agent": "WebSurfer",
+      "gold_step": 12,
+      "pred_agent": "WebSurfer",
+      "pred_step": 12,
+      "agent_hit": true,
+      "step_hit": true,
+      "top3_hit": false,
+      "within1_hit": true,
+      "prompt_tokens": 6565,
+      "completion_tokens": 53
+    },
+    {
+      "split": "hand_crafted",
+      "run_id": "hc-2",
+      "gold_agent": "WebSurfer",
+      "gold_step": 4,
+      "pred_agent": "WebSurfer",
+      "pred_step": 4,
+      "agent_hit": true,
+      "step_hit": true,
+      "top3_hit": true,
+      "within1_hit": true,
+      "prompt_tokens": 10102,
+      "completion_tokens": 77
+    },
+    {
+      "split": "hand_crafted",
+      "run_id": "hc-3",
+      "gold_agent": "WebSurfer",
+      "gold_step": 32,
+      "pred_agent": "WebSurfer",
+      "pred_step": 92,
+      "agent_hit": true,
+      "step_hit": false,
+      "top3_hit": false,
+      "within1_hit": false,
+      "prompt_tokens": 11220,
+      "completion_tokens": 64
+    }
+  ]
+}

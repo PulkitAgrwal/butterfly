@@ -1,0 +1,1 @@
+{"text": "{\"agent\":\"Research_Expert\",\"step\":4,\"reason\":\"The first decisive error was assuming the Reuters IPO article was enough and moving on without confirming the actual IPO year from a direct source, which then anchored the rest of the search to an unsupported year.\"}", "prompt_tokens": 1765, "completion_tokens": 56, "model": "gpt-5.4-mini"}
