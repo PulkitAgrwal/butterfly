@@ -170,7 +170,7 @@ FalkorDB v4.22.1, Python, FastAPI, Cytoscape.js, OpenAI. Data: [Who&When](https:
 
 ## AI assistance disclosure
 
-This project was built with Claude Code (Anthropic) as a pair-programming assistant, and Zen MCP (GPT and Gemini models) for idea review. The demo video's narration is generated with ElevenLabs. The author chose the idea, the graph model and the evaluation design, reviewed every change, and can explain all of it.
+This project was built with Claude Code (Anthropic) as a pair-programming assistant, and Zen MCP (GPT and Gemini models) for idea review. The author chose the idea, the graph model and the evaluation design, reviewed every change, and can explain all of it.
 
 ## License
 
