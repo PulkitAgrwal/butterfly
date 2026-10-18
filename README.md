@@ -2,6 +2,8 @@
 
 **Find the flap that caused the storm.** When a team of AI agents fails a task, Butterfly finds which agent made the decisive mistake, at which step, and, when the graph links the two, shows the chain of steps that carried that mistake to the failure as a FalkorDB path you can re-run.
 
+**Try it:** [pulkitagrwal.github.io/butterfly](https://pulkitagrwal.github.io/butterfly/), a recorded copy of the app with every answer captured from FalkorDB; `docker compose up` runs it live (see *Quickstart*).
+
 Built for [Graph Hacks: Context for AI Agents](https://www.wemakedevs.org/hackathons/falkordb) (WeMakeDevs x FalkorDB). **Track: Agents That Act on Connected Data.**
 
 **In one line:** on 184 real, human-labelled multi-agent failures from a public benchmark (Who&When, ICML 2025, not faults we planted), Butterfly finds the decisive step as often as the strongest whole-log method, names the responsible agent more often (62.5% vs 53.8%), sends the LLM half the tokens, and for 66 of the 184 answers shows the dependency chain from the failure back to the mistake as a graph path. With no LLM at all, the graph alone finds the step 28% of the time.
@@ -168,7 +170,7 @@ FalkorDB v4.22.1, Python, FastAPI, Cytoscape.js, OpenAI. Data: [Who&When](https:
 
 ## AI assistance disclosure
 
-This project was built with Claude Code (Anthropic) as a pair-programming assistant, and Zen MCP (GPT and Gemini models) for idea review. The author chose the idea, the graph model and the evaluation design, reviewed every change, and can explain all of it.
+This project was built with Claude Code (Anthropic) as a pair-programming assistant, and Zen MCP (GPT and Gemini models) for idea review. The demo video's narration is generated with ElevenLabs. The author chose the idea, the graph model and the evaluation design, reviewed every change, and can explain all of it.
 
 ## License
 
