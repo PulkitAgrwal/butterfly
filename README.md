@@ -2,7 +2,7 @@
 
 **Find the flap that caused the storm.** When a team of AI agents fails a task, Butterfly finds which agent made the decisive mistake, at which step, and, when the graph links the two, shows the chain of steps that carried that mistake to the failure as a FalkorDB path you can re-run.
 
-**Demo video:** [youtu.be/YNqCrx-5dQg](https://youtu.be/YNqCrx-5dQg) (2.5 min) · **Blog post:** [Which AI agent broke it?](https://dev.to/pulkit_agarwal_b319f96cc5/which-ai-agent-broke-it-tracing-multi-agent-failures-back-to-the-first-wrong-step-with-falkordb-3gd9)
+**Demo video:** [youtu.be/evnTPA-mxyI](https://youtu.be/evnTPA-mxyI) (2:40) · **Blog post:** [Which AI agent broke it?](https://dev.to/pulkit_agarwal_b319f96cc5/which-ai-agent-broke-it-tracing-multi-agent-failures-back-to-the-first-wrong-step-with-falkordb-3gd9)
 
 **Try it:** [butterfly-falkordb.netlify.app](https://butterfly-falkordb.netlify.app), a recorded copy of the app with every answer captured from FalkorDB; `docker compose up` runs it live (see *Quickstart*).
 
